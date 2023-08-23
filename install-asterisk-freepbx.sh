@@ -123,7 +123,7 @@ wget -c http://downloads.asterisk.org/pub/telephony/asterisk/asterisk-18-current
 fi
 tar xvfz asterisk-18-current.tar.gz
 cd asterisk-18*/
-### 3 lines below is configure command from our old script (not from the web)
+# 3 lines below is configure command from our old script (not from the web)
 ./configure --with-pjproject-bundled --with-jansson-bundled --with-iksemel --libdir=/usr/lib64
 ./configure --with-pjproject-bundled --with-jansson-bundled --without-iksemel --libdir=/usr/lib64
 make menuselect.makeopts
@@ -150,10 +150,10 @@ echo -e "\n\033[5;4;47;34m Configure Asterisk  \033[0m\n"
 id -u asterisk 2>/dev/null || adduser asterisk -m -c "Asterisk User"
 usermod -aG audio,dialout asterisk
 chown -R asterisk.asterisk /etc/asterisk /var/{lib,log,spool}/asterisk /usr/lib64/asterisk
-### uncomment AST_USER and AST_GROUP
+# uncomment AST_USER and AST_GROUP
 sed -i 's/#AST_USER=\"asterisk\"/AST_USER=\"asterisk\"/g' /etc/sysconfig/asterisk
 sed -i 's/#AST_GROUP=\"asterisk\"/AST_GROUP=\"asterisk\"/g' /etc/sysconfig/asterisk
-### uncomment  runuser = asterisk and rungroup = asterisk --> please use sed command on this
+# uncomment  runuser = asterisk and rungroup = asterisk --> please use sed command on this
 sed -i 's/;runuser = asterisk/runuser = asterisk/' /etc/asterisk/asterisk.conf
 sed -i 's/;rungroup = asterisk/rungroup = asterisk/' /etc/asterisk/asterisk.conf
 _check configure_asterisk
@@ -256,8 +256,7 @@ _check configure_fwconsole
 echo -e "\n\033[5;4;47;34m Configure FreePBX service \033[0m\n"
 # restart httpd and php-fpm services
 systemctl restart httpd php-fpm
-
-### create systemd unit for auto-starting for services
+# create systemd unit for auto-starting for services
 tee /etc/systemd/system/freepbx.service<<EOF
 [Unit]
 Description=FreePBX VoIP Server
@@ -270,8 +269,7 @@ ExecStop=/usr/sbin/fwconsole stop -q
 [Install]
 WantedBy=multi-user.target
 EOF
-
-### enable the service to autostart
+# enable the service to autostart
 systemctl daemon-reload
 systemctl enable freepbx
 _check configure_freepbx_service
