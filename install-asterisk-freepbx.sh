@@ -2,12 +2,12 @@
 #set -euo pipefail
 set -o pipefail
 
-RED='\E[1;31m'      # 红
-GREEN='\E[1;32m'    # 绿
-YELLOW='\E[1;33m'    # 黄
-BLUE='\E[1;34m'     # 蓝
-PINK='\E[1;35m'     # 粉
-RES='\E[0m'         # 清除颜色
+RED='\E[1;31m'      # red
+GREEN='\E[1;32m'    # green
+YELLOW='\E[1;33m'   # yellow
+BLUE='\E[1;34m'     # blue
+PINK='\E[1;35m'     # pink
+RES='\E[0m'         # clear
 
 _check() {
 if [[ $? -ne 0 ]]; then
