@@ -5,3 +5,7 @@ Rocky linux temmplate 8
 3. Download and install dependencies and packages needed for Asterisk and Freepbx
 4. Download and install and configure Asterisk
 5. Download and install and configure FreePBX
+
+Usage:
+bash change-ip.sh
+bash install-asterisk-freepbx.sh
