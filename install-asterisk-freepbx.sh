@@ -25,6 +25,9 @@ sed -i 's/enabled = 1/enabled = 0/g' /etc/yum.repos.d/artifacts-rocky8-tlscontac
 _check disable_sec_repo
 
 ########## Prerequisite for Rocky Linux packages for Asterisk and FreePBX ###########
+echo -e "\n\033[5;4;47;34m ===== 1. Update and Install all packages (~45 minutes) ===== \033[0m\n"
+sleep 3
+
 ### Disable and disable SELinux
 echo -e "\n\033[5;4;47;34m Configuring SElinux \033[0m\n"
 sed -i 's/\(^SELINUX=\).*/\SELINUX=disabled/' /etc/selinux/config
@@ -111,6 +114,8 @@ dnf install -y php php-pear php-cgi php-common php-curl php-mbstring php-gd php-
 _check install_freepbx_prerequisite
 
 ############ Install Asterisk and Configure ##########
+echo -e "\n\033[5;4;47;34m ===== 2. Install and Configure Asterisk (~30 minutes) ===== \033[0m\n"
+sleep 3
 echo -e "\n\033[5;4;47;34m Download and install Asterisk \033[0m\n"
 cd /home/rocky/
 if  [ ! -e "asterisk-18-current.tar.gz" ]; then
@@ -164,6 +169,8 @@ _check restart_asterisk
 #core show uptime
 
 ############ Install FreePBX and Configure MySQL ##########
+echo -e "\n\033[5;4;47;34m ===== 3. Install and Configure FreePBX (~30 minutes) ===== \033[0m\n"
+sleep 3
 echo -e "\n\033[5;4;47;34m Configure MySQL MariaDB \033[0m\n"
 ### Enable MariaDB and config the user and security
 systemctl enable --now mariadb
