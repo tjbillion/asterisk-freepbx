@@ -1,3 +1,6 @@
+rm -rf /etc/sysconfig/network-scripts/ifcfg-ens33-1
+mv /etc/sysconfig/network-scripts/ifcfg-ens33 /etc/sysconfig/network-scripts/ifcfg-ens3
+
 sed -i 's/^UUID=/#UUID=/' /etc/sysconfig/network-scripts/ifcfg-ens3
 
 # check ipaddr
