@@ -1,7 +1,11 @@
 rm -rf /etc/sysconfig/network-scripts/ifcfg-ens33-1
 mv /etc/sysconfig/network-scripts/ifcfg-ens33 /etc/sysconfig/network-scripts/ifcfg-ens3
 
+# disable UUID
 sed -i 's/^UUID=/#UUID=/' /etc/sysconfig/network-scripts/ifcfg-ens3
+
+# disable dhcp
+sed -i 's/^BOOTPROTO=dhcp/BOOTPROTO=none/' /etc/sysconfig/network-scripts/ifcfg-ens3
 
 # check ipaddr
 if grep -q "IPADDR" /etc/sysconfig/network-scripts/ifcfg-ens3; then
