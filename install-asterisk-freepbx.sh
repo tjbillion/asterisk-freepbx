@@ -176,12 +176,14 @@ echo -e "\n\033[5;4;47;34m Configure MySQL MariaDB \033[0m\n"
 systemctl enable --now mariadb
 
 ### setup the mysql root password here
-#mysql_secure_installation
-#UPDATE mysql.user SET Password=PASSWORD('${db_root_password}') WHERE User='root';
+# we don't use the interactive command
+# mysql_secure_installation
 
-mysqladmin password "fgmn88.1706"
-mysql --user=root --password=fgmn88.1706 <<_EOF_
-DELETE FROM mysql.user WHERE User='';
+# we don't setup password
+# mysqladmin password "xxx"
+
+mysql --user=root <<_EOF_
+UPDATE mysql.user SET authentication_string=PASSWORD('') WHERE User='root';
 DELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost', '127.0.0.1', '::1');
 DROP DATABASE IF EXISTS test;
 DELETE FROM mysql.db WHERE Db='test' OR Db='test\\_%';
@@ -226,18 +228,15 @@ cd freepbx
 systemctl stop asterisk
 ./start_asterisk start
 # setup the database password here
-./install --webroot=/var/www/html -n --dbuser root --dbpass fgmn88.1706
+# we don't use root password 
+# ./install --webroot=/var/www/html -n --dbuser root --dbpass xxx
+./install --webroot=/var/www/html -n
 _check install_freepbx
 
 ### Install freePBX fwconsole modules
 echo -e "\n\033[5;4;47;34m Configure fwconsole \033[0m\n"
 fwconsole ma disablerepo commercial
 # start: this is from old script (different from the blog)
-# sudo fwconsole ma disablerepo commercial
-# sudo fwconsole ma installall
-# sudo fwconsole ma delete firewall
-# sudo fwconsole reload
-# sudo fwconsole restart
 fwconsole ma refreshsignatures
 fwconsole ma downloadinstall pm2
 fwconsole ma downloadinstall asteriskinfo
@@ -245,6 +244,14 @@ fwconsole ma downloadinstall logfiles
 fwconsole ma downloadinstall certman
 fwconsole ma upgradeall
 # end: from old script
+# sudo fwconsole ma disablerepo commercial
+# sudo fwconsole ma installall
+# sudo fwconsole ma delete firewall
+# sudo fwconsole reload
+# sudo fwconsole restart
+########## --> to check and test if we need this
+# Unable to locate the FreePBX BMO Class 'Core'A required module might be disabled or uninstalled. Recommended steps (run from the CLI): 1) fwconsole ma install core 2) fwconsole ma enable core
+# Unable to locate the FreePBX BMO Class 'Sipsettings'A required module might be disabled or uninstalled. Recommended steps (run from the CLI): 1) fwconsole ma install sipsettings 2) fwconsole ma enable sipsettings
 
 # this is from old script but not working
 #fwconsole ma delete firewall
