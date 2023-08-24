@@ -7,5 +7,6 @@ Rocky linux temmplate 8
 5. Download and install and configure FreePBX
 
 Usage:
-bash change-ip.sh
-bash install-asterisk-freepbx.sh
+1. bash change-ip.sh
+2. bash install-asterisk-freepbx.sh
+3. bash join-domain.sh
