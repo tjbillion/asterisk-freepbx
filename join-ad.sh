@@ -19,14 +19,19 @@ fi
 }
 
 ########## Join to AD with realmd ##########
+
+# install necessary packages
 dnf -y install realmd oddjob oddjob-mkhomedir sssd adcli 
 # this one below might be no need?
 dnf -y install samba-common samba-common-tools krb5-workstation openldap-clients 
 # package not found: policycoreutils-python
 _check install_package_for_join_AD
+
 # join to AD
-realm join --user=a.xxx.xxx tls.ad -v
+read -p "Enter your a.xxx.xxx username to join AD: " USER
+realm join --user=$USER tls.ad -v
 _check join_AD
+
 # permit IT adm users group
 realm permit -g gu.users_it_adm.usr -v
 _check permit_groups
