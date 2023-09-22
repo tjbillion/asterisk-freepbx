@@ -246,8 +246,16 @@ fwconsole ma downloadinstall pm2
 fwconsole ma downloadinstall asteriskinfo
 fwconsole ma downloadinstall logfiles
 fwconsole ma downloadinstall certman
-fwconsole ma upgradeall
 # end: from old script
+
+# TJ: 20230922 added installall and others
+fwconsole ma install core
+fwconsole ma enable core
+fwconsole ma install sipsettings
+fwconsole ma enable sipsettings
+fwconsole ma upgradeall
+fwconsole ma installall
+
 # sudo fwconsole ma disablerepo commercial
 # sudo fwconsole ma installall
 # sudo fwconsole ma delete firewall
