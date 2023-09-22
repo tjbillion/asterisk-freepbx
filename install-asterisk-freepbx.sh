@@ -204,7 +204,8 @@ sed -i 's/;upload_max_filesize = 2M/upload_max_filesize = 20M/' /etc/php.ini
 sed -i 's/upload_max_filesize = 2M/upload_max_filesize = 20M/' /etc/php.ini
 
 ### TJ: 20230920 fix XHR response 503 when you apply config in FreePBX
-sed -i 's/ServerRoot\ "\/etc\/httpd"/ServerRoot\ "\/etc\/httpd"\nTimeOut\ 600\nProxyTimeout\ 600/' httpd.conf
+sed -i 's/ServerRoot\ "\/etc\/httpd"/ServerRoot\ "\/etc\/httpd"\nTimeOut\ 600\nProxyTimeout\ 600/' /etc/httpd/conf/httpd.conf
+_check fix_XHR_timedout_issue
 
 ### restart php-fpm and httpd
 systemctl restart php-fpm httpd
